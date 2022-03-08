@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react'
 import * as S from './styled'
 
 interface InputProps {
+  maxLength?: number
   name: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   placeholder: string
@@ -10,6 +11,7 @@ interface InputProps {
 }
 
 const Input = ({
+  maxLength,
   name,
   onChange,
   placeholder,
@@ -18,6 +20,7 @@ const Input = ({
 }: InputProps) => (
   <S.Input
     data-testid="input"
+    maxLength={maxLength}
     name={name}
     onChange={onChange}
     placeholder={placeholder}

@@ -9,7 +9,7 @@ const Home = () => {
 
   const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-
+    console.log(value, 'value')
     setValues({
       ...values,
       [name]: value
@@ -28,6 +28,10 @@ const Home = () => {
     return data.status === 201
       ? console.log('usuario cadastrado com sucesso')
       : console.log('error ao cadastrar')
+  }
+
+  const onlyNumber = (number: string) => {
+    return number.replace(/\D/g, '').replace(/(\d{6})\d+?$/, '$1')
   }
 
   return (
@@ -49,10 +53,11 @@ const Home = () => {
           value={values.email}
         />
         <Input
+          maxLength={6}
           name="password"
           onChange={inputChange}
           placeholder="senha"
-          value={values.password}
+          value={onlyNumber(values.password)}
         />
       </S.InputContainer>
       <S.PasswordContainer>
