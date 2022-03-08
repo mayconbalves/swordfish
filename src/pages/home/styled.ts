@@ -3,16 +3,9 @@ import styled from 'styled-components'
 export const Container = styled.main`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  margin: 5%;
+  height: 90vh;
+  margin: 5% 5% 0;
   width: 90%;
-  @media (max-width: 599px) {
-    display: flex;
-  }
-
-  @media (min-width: 600px) {
-    display: flex;
-  }
 `
 
 export const TitleContainer = styled.div`
@@ -37,7 +30,7 @@ export const Alert = styled.p`
 
 export const List = styled.ul`
   color: red;
-  margin: 0 20px;
+  margin-left: 40px;
 `
 
 export const ButtonContainer = styled.div`
@@ -46,4 +39,11 @@ export const ButtonContainer = styled.div`
   flex-direction: column;
   gap: 15px;
   position: absolute;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    width: 90%;
+  }
 `

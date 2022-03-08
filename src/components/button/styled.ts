@@ -9,4 +9,8 @@ export const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  @media (min-width: 600px) {
+    width: 340px;
+  }
 `
