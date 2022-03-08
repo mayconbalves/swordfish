@@ -1,11 +1,12 @@
+import { ChangeEvent } from 'react'
 import * as S from './styled'
 
 interface InputProps {
-  name?: string
-  onChange?: () => void
-  placeholder?: string
+  name: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  placeholder: string
   required?: boolean
-  value?: string | number
+  value: string | number
 }
 
 const Input = ({

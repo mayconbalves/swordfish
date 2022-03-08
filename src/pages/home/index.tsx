@@ -1,18 +1,59 @@
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 import * as S from './styled'
 import Input from '../../components/input'
+import Button from '../../components/button'
 
 const Home = () => {
+  const [values, setValues] = useState({ name: '', email: '', password: '' })
   const [isValid, setValidate] = useState(false)
+
+  const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+
+    setValues({
+      ...values,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = async () => {
+    const data = await fetch(
+      'https://61e036950f3bdb0017934eb0.mockapi.io/api/valid-passwords/results',
+      {
+        method: 'POST',
+        body: JSON.stringify({ ...values })
+      }
+    )
+    setValues({ name: '', email: '', password: '' })
+    return data.status === 201
+      ? console.log('usuario cadastrado com sucesso')
+      : console.log('error ao cadastrar')
+  }
+
   return (
     <S.Container>
       <S.TitleContainer>
         <h1>Valide sua senha</h1>
       </S.TitleContainer>
       <S.InputContainer>
-        <Input name="nome" placeholder="nome" />
-        <Input name="email" placeholder="email" />
-        <Input name="senha" placeholder="senha" />
+        <Input
+          name="name"
+          onChange={inputChange}
+          placeholder="nome"
+          value={values.name}
+        />
+        <Input
+          name="email"
+          onChange={inputChange}
+          placeholder="email"
+          value={values.email}
+        />
+        <Input
+          name="password"
+          onChange={inputChange}
+          placeholder="senha"
+          value={values.password}
+        />
       </S.InputContainer>
       <S.PasswordContainer>
         {isValid ? (
@@ -46,7 +87,7 @@ const Home = () => {
             Falha ao enviar o resultado. Tente novamente.
           </S.Alert>
         )}
-        <button>Enviar</button>
+        <Button onClick={handleSubmit} title="Enviar" type="button" />
       </S.ButtonContainer>
     </S.Container>
   )

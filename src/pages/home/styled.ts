@@ -42,7 +42,8 @@ export const List = styled.ul`
 
 export const ButtonContainer = styled.div`
   bottom: 5%;
-  position: absolute;
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  position: absolute;
 `
